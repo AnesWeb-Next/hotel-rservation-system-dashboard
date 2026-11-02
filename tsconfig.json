@@ -30,5 +30,20 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/api",
+    "src/components",
+    "src/contexts",
+    "src/features",
+    "src/hooks",
+    "src/layouts",
+    "src/legacy",
+    "src/lib",
+    "src/pages",
+    "src/providers",
+    "src/types",
+    "src/utils",
+    "src/validation"
+  ]
 }

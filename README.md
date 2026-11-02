@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel Reservation Dashboard
 
-## Getting Started
+Administrative dashboard for the hotel reservation backend.
 
-First, run the development server:
+## Run locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Copy `.env.example` to `.env.local`.
+2. Set `NEXT_PUBLIC_API_URL` to your backend API base URL, without a trailing slash.
+3. Run `npm run dev` (use `npm.cmd run dev` in PowerShell when script execution is restricted).
+
+Open `/login` in the dashboard and sign in with the existing administrator's email and password. The dashboard verifies the account with `GET /auth/check` and only allows users with the `admin` role. Sign-in tokens are kept for the browser session by default; selecting “Remember me” stores the token on the device until logout. Use the Log out button to clear it.
+
+The dashboard requests `GET {NEXT_PUBLIC_API_URL}/admin/dashboard`. It sends the saved `auth_token` as a bearer token when one exists, and also includes cookies. The Express server must mount `adminRouter` at `/admin` and allow the dashboard origin through CORS (`FRONTEND_DOMAIN=http://localhost:3000` in local development).
+
+## Checks
+
+```text
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Migration note
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The copied Book Store pages have been retained for reference under `src/legacy/pages`. They are deliberately excluded from the active Next.js dashboard build while the Hotel Dashboard routes are rebuilt against the backend API contract.

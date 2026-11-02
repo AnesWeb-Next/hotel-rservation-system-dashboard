@@ -12,6 +12,21 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The copied Book Store application is retained only as a migration reference.
+    // New Hotel Dashboard code lives in src/app and is checked normally.
+    "src/components/**",
+    "src/contexts/**",
+    "src/features/**",
+    "src/hooks/**",
+    "src/layouts/**",
+    "src/pages/**",
+    "src/providers/**",
+    "src/api/**",
+    "src/legacy/**",
+    "src/lib/**",
+    "src/utils/**",
+    "src/validation/**",
+    "src/types/**",
   ]),
 ]);
 
