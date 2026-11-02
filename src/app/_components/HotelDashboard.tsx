@@ -8,6 +8,7 @@ import {
   Clock3,
   Hotel,
   RefreshCw,
+  Star,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -43,6 +44,10 @@ const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
 
 function formatNumber(value?: number) {
   return new Intl.NumberFormat().format(value ?? 0);
+}
+
+function formatRating(value?: number) {
+  return (value ?? 0).toFixed(1);
 }
 
 export function HotelDashboard() {
@@ -97,6 +102,7 @@ export function HotelDashboard() {
     { label: "Current stays", value: formatNumber(bookings?.checkedIn), detail: `${formatNumber(bookings?.pastDueCheckout)} past due checkout`, icon: Clock3, color: "bg-emerald-600" },
     { label: "Available rooms", value: formatNumber(stats?.rooms?.available), detail: `${formatNumber(stats?.rooms?.unavailable)} unavailable`, icon: BedDouble, color: "bg-violet-600" },
     { label: "Registered guests", value: formatNumber(stats?.users?.guests), detail: `${formatNumber(stats?.users?.newThisMonth)} new this month`, icon: Users, color: "bg-amber-500" },
+    { label: "Average rating", value: `${formatRating(stats?.ratings?.average)} / 5`, detail: `${formatNumber(stats?.ratings?.total)} guest ratings`, icon: Star, color: "bg-yellow-500" },
   ];
 
   return (
@@ -113,6 +119,8 @@ export function HotelDashboard() {
           <div className="flex flex-wrap gap-3">
             <Link href="/bookings" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Manage bookings</Link>
             <Link href="/rooms" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Manage rooms</Link>
+            <Link href="/hotels" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Manage hotels</Link>
+            <Link href="/ratings" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">View ratings</Link>
             <LogoutButton />
             <button
               type="button"
@@ -133,7 +141,7 @@ export function HotelDashboard() {
           </div>
         )}
 
-        <section className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Hotel statistics">
+        <section className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-5" aria-label="Hotel statistics">
           {statCards.map(({ label, value, detail, icon: Icon, color }) => (
             <article key={label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
               <div className="flex items-start justify-between">
@@ -168,12 +176,12 @@ export function HotelDashboard() {
           </article>
 
           <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="font-semibold">Next integration steps</h2>
-            <ol className="mt-5 space-y-4 text-sm leading-6 text-slate-600">
-              <li><span className="mr-2 font-semibold text-slate-950">1.</span>Add the backend base URL to <code className="rounded bg-slate-100 px-1.5 py-0.5">.env.local</code>.</li>
-              <li><span className="mr-2 font-semibold text-slate-950">2.</span>Confirm the dashboard endpoint returns the booking, room, guest, and rating counts.</li>
-              <li><span className="mr-2 font-semibold text-slate-950">3.</span>Add the bookings, rooms, hotels, and users routes based on the confirmed API contract.</li>
-            </ol>
+            <h2 className="font-semibold">Property management</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">Manage hotel listings and review guest feedback from one place.</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/hotels" className="rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">Manage hotels</Link>
+              <Link href="/ratings" className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Review ratings</Link>
+            </div>
           </article>
         </section>
       </div>

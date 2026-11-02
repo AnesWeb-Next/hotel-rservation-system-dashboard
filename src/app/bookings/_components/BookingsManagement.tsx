@@ -162,6 +162,9 @@ export function BookingsManagement() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Dashboard</Link>
+            <Link href="/rooms" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Rooms</Link>
+            <Link href="/hotels" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Hotels</Link>
+            <Link href="/ratings" className="rounded-xl border border-white/20 px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10">Ratings</Link>
             <LogoutButton />
             <button type="button" onClick={() => void loadBookings()} disabled={isLoading} className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 disabled:opacity-70"><RefreshCw className={`size-4 ${isLoading ? "animate-spin" : ""}`} />Refresh</button>
           </div>

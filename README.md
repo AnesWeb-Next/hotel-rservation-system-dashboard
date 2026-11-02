@@ -12,6 +12,13 @@ Open `/login` in the dashboard and sign in with the existing administrator's ema
 
 The dashboard requests `GET {NEXT_PUBLIC_API_URL}/admin/dashboard`. It sends the saved `auth_token` as a bearer token when one exists, and also includes cookies. The Express server must mount `adminRouter` at `/admin` and allow the dashboard origin through CORS (`FRONTEND_DOMAIN=http://localhost:3000` in local development).
 
+## Admin pages
+
+- `/bookings` manages reservations.
+- `/rooms` lists rooms and supports creating, editing, and deleting them. Create the hotel first; room numbers are kept unchanged while editing so existing availability dates are preserved.
+- `/hotels` supports creating, editing, and deleting hotels. The API prevents deleting hotels that still have rooms.
+- `/ratings` lists guest ratings with pagination and allows administrators to delete a rating.
+
 ## Checks
 
 ```text
