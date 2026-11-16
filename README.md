@@ -6,11 +6,11 @@ Administrative dashboard for the hotel reservation backend.
 
 1. Copy `.env.example` to `.env.local`.
 2. Set `NEXT_PUBLIC_API_URL` to your backend API base URL, without a trailing slash.
-3. Run `npm run dev` (use `npm.cmd run dev` in PowerShell when script execution is restricted).
+3. Run `npm run dev` (use `npm.cmd run dev` in PowerShell when script execution is restricted). The dashboard runs at `http://localhost:3001` so it can run alongside the main site.
 
-Open `/login` in the dashboard and sign in with the existing administrator's email and password. The dashboard verifies the account with `GET /auth/check` and only allows users with the `admin` role. Sign-in tokens are kept for the browser session by default; selecting “Remember me” stores the token on the device until logout. Use the Log out button to clear it.
+Open `http://localhost:3001/login` and sign in with the existing administrator's email and password. The dashboard verifies the account with `GET /auth/check` and only allows users with the `admin` role. Sign-in tokens are kept for the browser session by default; selecting “Remember me” stores the token on the device until logout. Use the Log out button to clear it.
 
-The dashboard requests `GET {NEXT_PUBLIC_API_URL}/admin/dashboard`. It sends the saved `auth_token` as a bearer token when one exists, and also includes cookies. The Express server must mount `adminRouter` at `/admin` and allow the dashboard origin through CORS (`FRONTEND_DOMAIN=http://localhost:3000` in local development).
+The dashboard requests `GET {NEXT_PUBLIC_API_URL}/admin/dashboard`. It sends the saved `auth_token` as a bearer token when one exists, and also includes cookies. The Express server must mount `adminRouter` at `/admin` and allow both local app origins through CORS (`FRONTEND_DOMAIN=http://localhost:3000,http://localhost:3001` in local development).
 
 ## Admin pages
 
